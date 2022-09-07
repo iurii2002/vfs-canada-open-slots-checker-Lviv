@@ -1,0 +1,5 @@
+venv
+working_data.py
+captcha.png
+.idea
+__pycache__

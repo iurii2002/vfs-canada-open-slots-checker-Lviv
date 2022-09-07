@@ -3,7 +3,7 @@ import requests
 from anticaptchaofficial.imagecaptcha import imagecaptcha
 from PIL import Image
 from io import BytesIO
-from working_data import enter_captcha_position, anticaptcha_key
+from working_data import enter_captcha_position, anticaptcha_key, tg_token, tg_chat_id
 
 
 def solve_captcha_pic(driver):
@@ -29,8 +29,8 @@ def get_captcha_pic(driver):
 
 
 def telegram_bot_sendtext(bot_message):
-    bot_token = '1635932722:AAEUIQ27kTpUKF_57FJtAeTS3cnkmaxDa3Y'
-    bot_chatID = '486767090'
+    bot_token = tg_token
+    bot_chatID = tg_chat_id
     send_text = 'https://api.telegram.org/bot' + bot_token + '/sendMessage?chat_id=' + \
                 bot_chatID + '&parse_mode=Markdown&text=' + bot_message
     response = requests.get(send_text)

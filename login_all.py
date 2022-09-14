@@ -11,17 +11,11 @@ def main():
         if account is None:
             continue
         try:
-            slots_available = False
 
             mail, psw, application = account
             bot = VFSBot(selenium_driver_path, mail, psw, application)
             bot.enter_account()
-            while not slots_available:
-                bot.retrieve_appointment()
-                if bot.is_there_available_slots():
-                    slots_available = True
-                sleep(random.randint(60, 100))
-            telegram_bot_sendtext("SLOTS AVAILABLE")
+            bot.retrieve_appointment()
 
         except Exception as err:
             print(err)

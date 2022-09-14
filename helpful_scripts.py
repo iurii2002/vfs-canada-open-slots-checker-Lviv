@@ -35,3 +35,9 @@ def telegram_bot_sendtext(bot_message):
                 bot_chatID + '&parse_mode=Markdown&text=' + bot_message
     response = requests.get(send_text)
     return response.json()
+
+
+def make_full_screenshot(driver):
+    png = driver.get_screenshot_as_png()  # saves screenshot of entire page
+    im = Image.open(BytesIO(png))  # uses PIL library to open image in memory
+    im.save('screenshot2.png')  # saves new cropped image

@@ -8,7 +8,7 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-from helpful_scripts import solve_captcha_pic
+from helpful_scripts import solve_captcha_pic, make_full_screenshot
 
 
 class VFSBot:
@@ -110,8 +110,15 @@ class VFSBot:
                 print('there is no slots available')
                 return False
             else:
+                make_full_screenshot(self.driver)
                 print('there is slots available')
                 return True
         except:
             with open("page_source.html", "w") as f:
                 f.write(self.driver.page_source)
+                make_full_screenshot(self.driver)
+                return True
+
+    def reload_driver(self):
+        self.driver.quit()
+        self.driver = self._start_driver()
